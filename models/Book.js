@@ -25,34 +25,32 @@ const BookSchema = new mongoose.Schema({
   },
   uploadedBy: {
     type: String,
-    required: true
   },
   bookTags: [{
     type: String,
   }],
   bookPrice: {
     type: Number,
-    required: true
+  },
+  bookType: {
+    type: String,
   },
   bookDescription: {
     type: String,
-    required: true
   },
   bookPages: [{
     pageNumber: {
       type: Number,
-      required: true
     },
     pageImagePath: {
       type: String,
-      required: true
     },
     pageText: {
       type: String,
     },
-    pageTags: {
+    pageTags: [{
       type: String,
-    }
+    }]
   }]
 }, {
   collection: 'book'

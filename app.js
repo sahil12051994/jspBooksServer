@@ -192,8 +192,6 @@ app.post('/jsp/account/delete', passportConfig.isAuthenticated, userController.p
 app.get('/jsp/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 app.get('/jsp/user/:id', passportConfig.isAuthenticated, userController.getInfo);
 
-app.get('/jsp/book/', bookController.getAllBooks);
-
 /**
  * HTML Serving app routes.
  */
@@ -201,6 +199,11 @@ app.get('/jsp/', homeController.index);
 app.get('/jsp/loginPage', homeController.login);
 app.get('/jsp/uploadPage', homeController.upload);
 app.get('/jsp/bookPage', homeController.bookPage);
+/**
+ * Book logic routes.
+ */
+app.get('/jsp/book/', bookController.getAllBooks);
+app.post('/jsp/book/upload', bookController.uploadBook);
 
 /**
  * Error Handler.
