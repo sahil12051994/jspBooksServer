@@ -27,19 +27,44 @@ $(window).on('load', async function() {
 });
 
 function showImages(res) {
-  let imagesArray = res['bookPages']
+  let imagesArray = res['files']
+  imagesArray.sort(function(a, b) {
+    var keyA = (a.number),
+      keyB = (b.number);
+    // Compare the 2 dates
+    if (keyA < keyB) return -1;
+    if (keyA > keyB) return 1;
+    return 0;
+  });
   let tempHtml = '';
   $("#bookDiv").html('');
   for (var i = 0; i < imagesArray.length; i++) {
     tempHtml = tempHtml + '<div class="col-md-12">\
-      <img class="img-responsive" src="/jsp'+imagesArray[i]['pageImagePath']+'" style="width:100%">\
+      <img class="img-responsive" src="/jsp/uploads'+imagesArray[i]['path']+'" style="width:100%">\
     </div>'
   }
   $("#bookDiv").html(tempHtml);
 }
 
 $(document).on('change', '#validBookList', function() {
-  let bookId = $(this).val();
+  let bookId = $(this).val().split('_@_')[0];
+  let bookType = $(this).val().split('_@_')[1]
+  alert($(this).val(), $(this).attr('bookType'))
+  $.ajax({
+    url: serviceUrl + "jsp/book/getBookPages?bookType="+bookType+"&bookId="+bookId,
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    crossDomain: true,
+    beforeSend: function(request) {
+      request.setRequestHeader('Authorization', authToken);
+      request.setRequestHeader("Access-Control-Allow-Origin", "*");
+    },
+    success: function(res) {
+      showImages(res)
+    },
+    error: function(err) {}
+  });
   $.ajax({
     url: serviceUrl + "jsp/book?" + "bookId=" + bookId,
     type: "GET",
@@ -52,7 +77,6 @@ $(document).on('change', '#validBookList', function() {
     },
     success: function(res) {
       globalBookToView = res[0]
-      showImages(globalBookToView)
     },
     error: function(err) {}
   });
@@ -62,7 +86,7 @@ function fillUploadedBooksList(res) {
   $('#validBookList').html('');
   let tempHtml = '<option>Select book to view</option>';
   for (var i = 0; i < res.length; i++) {
-    tempHtml = tempHtml + '<option value="'+res[i]['bookId']+'">'+res[i]['bookName']+'</option>'
+    tempHtml = tempHtml + '<option value="'+res[i]['bookId']+'_@_'+res[i]['bookType']+'">'+res[i]['bookName']+'</option>'
   }
   $('#validBookList').html(tempHtml);
   $('#validBookList').select2({

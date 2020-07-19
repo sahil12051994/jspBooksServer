@@ -1,7 +1,6 @@
 /**
  * Module dependencies.
- gs -sDEVICE=png16m -dTextAlphaBits=4 -r300 -o /home/sahil/Downloads/a.png /home/sahil/Downloads/Test.pdf
- */
+*/
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
@@ -28,9 +27,6 @@ const pathModule = require('path')
 let {
   PythonShell
 } = require('python-shell')
-const upload = multer({
-  dest: path.join(__dirname, 'uploads')
-});
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -49,6 +45,7 @@ const contactController = require('./controllers/contact');
 const groupController = require('./controllers/groups');
 
 const bookController = require('./controllers/Book');
+const convertController = require('./controllers/bookConverter');
 
 const swig = require('swig');
 /**
@@ -205,7 +202,10 @@ app.get('/jsp/bookPage', homeController.bookPage);
  * Book logic routes.
  */
 app.get('/jsp/book/', bookController.getAllBooks);
+app.get('/jsp/book/getBookPages', bookController.getBookPages);
 app.post('/jsp/book/upload', bookController.uploadBook);
+app.post('/jsp/book/uploadPdf', bookController.uploadPdf);
+app.get('/jsp/book/convertBook', convertController.convertBook);
 
 /**
  * Error Handler.

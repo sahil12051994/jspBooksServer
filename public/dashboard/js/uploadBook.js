@@ -1,30 +1,9 @@
 $(window).on('load', async function() {
-
-  // let urlUserId = $.cookie("uId") ? $.cookie("uId") : getUrlParameter('usr');
-  // $.ajax({
-  //   url: serviceUrl + "face/user/" + urlUserId,
-  //   type: "GET",
-  //   contentType: "application/json; charset=utf-8",
-  //   dataType: "json",
-  //   crossDomain: true,
-  //   beforeSend: function(request) {
-  //     request.setRequestHeader('Authorization', authToken);
-  //     request.setRequestHeader("Access-Control-Allow-Origin", "*");
-  //   },
-  //   success: function(res) {
-  //     $(".user_name").html(res.profile.name);
-  //     currentUser = res;
-  //     $.cookie("uId", res._id)
-  //     if (res.email != 'sashank@gmail.com') {
-  //       $('#maskingMenu').remove()
-  //     }
-  //   },
-  //   error: function(err) {}
-  // });
   let getUploadedBooksVal = await getUploadedBooks();
 });
 
-function getAllUploadBookFormDetails() {
+async function insertBookFunction() {
+
   let bookObject = {
     bookDetails: {
       bookId: $("#bookId").val(),
@@ -45,7 +24,7 @@ function getAllUploadBookFormDetails() {
         pageText: "",
         pageTags: ["maths", "algebra"]
       }]
-    }
+    },
   }
   console.log(bookObject)
   $.ajax({
@@ -59,7 +38,7 @@ function getAllUploadBookFormDetails() {
       request.setRequestHeader('Authorization', authToken);
       request.setRequestHeader("Access-Control-Allow-Origin", "*");
     },
-    success: function(res) {
+    success: async function(res) {
       getUploadedBooks()
     },
     error: function(err) {}
@@ -77,6 +56,10 @@ function fillUploadedBooksList(res) {
   }
   $('#uploadedBooksList').html(tempHtml);
 }
+
+$(document).on('click', '#insertBook', function() {
+  insertBookFunction();
+})
 
 function getUploadedBooks() {
   return new Promise(function(resolve, reject) {
@@ -98,3 +81,63 @@ function getUploadedBooks() {
     });
   })
 }
+
+function uploadPdf(bookData) {
+  return new Promise(function(resolve, reject) {
+    var form = $('#uploadForm')[0];
+    var data = new FormData(form);
+    let file = $('#selectFilePlm')[0].files;
+    console.log(data)
+    $.ajax({
+      url: serviceUrl + 'jsp/book/uploadPdf?' + 'bookType=' + bookData.bookType + '&bookId=' + bookData.bookId + '&fName=' + bookData.fName,
+      type: 'POST',
+      data: data,
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(res) {
+        resolve()
+      },
+      error: function() {
+      }
+    });
+  })
+}
+
+function convertBook(bookData) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: serviceUrl + 'jsp/book/convertBook?' + 'bookType=' + bookData.bookType + '&bookId=' + bookData.bookId + '&fName=' + bookData.fName,
+      type: 'GET',
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(res) {
+        console.log(res)
+      },
+      error: function() {
+      }
+    });
+  })
+}
+
+$("#uploadPdfButton").click(async function(event) {
+  //disable the default form submission
+  event.preventDefault();
+  let uploadStatus = await uploadPdf({
+    bookType: $("#bookType").val(),
+    bookId: $("#bookId").val(),
+    fName: $('#selectFilePlm')[0].files[0]['name']
+  })
+  return false;
+});
+
+$(document).on('click', "#convertBook", async function() {
+  let uploadStatus = await convertBook({
+    bookType: $("#bookType").val(),
+    bookId: $("#bookId").val(),
+    fName: $('#selectFilePlm')[0].files[0]['name']
+  })
+})

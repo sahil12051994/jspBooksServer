@@ -47,6 +47,7 @@
     "fs-extra": "^9.0.0",
     "get-pixels": "^3.3.2",
     "gif-encoder": "^0.7.2",
+    "glob": "^7.1.6",
     "grunt": "^1.0.4",
     "grunt-contrib-uglify": "^4.0.1",
     "instagram-node": "^0.5.8",
