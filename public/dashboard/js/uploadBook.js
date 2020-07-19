@@ -60,7 +60,7 @@ function getAllUploadBookFormDetails() {
       request.setRequestHeader("Access-Control-Allow-Origin", "*");
     },
     success: function(res) {
-      fillUploadedBooksList(res)
+      getUploadedBooks()
     },
     error: function(err) {}
   });

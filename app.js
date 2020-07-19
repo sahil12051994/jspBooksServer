@@ -1,5 +1,6 @@
 /**
  * Module dependencies.
+ gs -sDEVICE=png16m -dTextAlphaBits=4 -r300 -o /home/sahil/Downloads/a.png /home/sahil/Downloads/Test.pdf
  */
 const express = require('express');
 const compression = require('compression');
@@ -199,6 +200,7 @@ app.get('/jsp/', homeController.index);
 app.get('/jsp/loginPage', homeController.login);
 app.get('/jsp/uploadPage', homeController.upload);
 app.get('/jsp/bookPage', homeController.bookPage);
+
 /**
  * Book logic routes.
  */

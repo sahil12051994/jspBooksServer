@@ -1,3 +1,5 @@
+let globalBookToView = {}
+
 $(window).on('load', async function() {
 
   // let urlUserId = $.cookie("uId") ? $.cookie("uId") : getUrlParameter('usr');
@@ -23,6 +25,38 @@ $(window).on('load', async function() {
   // });
   let getUploadedBooksVal = await getUploadedBooks();
 });
+
+function showImages(res) {
+  let imagesArray = res['bookPages']
+  let tempHtml = '';
+  $("#bookDiv").html('');
+  for (var i = 0; i < imagesArray.length; i++) {
+    tempHtml = tempHtml + '<div class="col-md-12">\
+      <img class="img-responsive" src="/jsp'+imagesArray[i]['pageImagePath']+'" style="width:100%">\
+    </div>'
+  }
+  $("#bookDiv").html(tempHtml);
+}
+
+$(document).on('change', '#validBookList', function() {
+  let bookId = $(this).val();
+  $.ajax({
+    url: serviceUrl + "jsp/book?" + "bookId=" + bookId,
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    crossDomain: true,
+    beforeSend: function(request) {
+      request.setRequestHeader('Authorization', authToken);
+      request.setRequestHeader("Access-Control-Allow-Origin", "*");
+    },
+    success: function(res) {
+      globalBookToView = res[0]
+      showImages(globalBookToView)
+    },
+    error: function(err) {}
+  });
+})
 
 function fillUploadedBooksList(res) {
   $('#validBookList').html('');

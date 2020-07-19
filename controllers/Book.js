@@ -20,8 +20,14 @@ exports.uploadBook = async (req, res) => {
 
 exports.getAllBooks = async (req, res) => {
   let aggPipeline = []
+
+  let matchObject = {}
+  if(req.query.bookId) {
+    bookId: req.query.bookId
+  }
+
   aggPipeline.push({
-    $match: {}
+    $match: matchObject
   })
 
   var book = await Book.aggregate(aggPipeline).exec();
