@@ -1,0 +1,22 @@
+database:
+  mongodb:
+    address:            "localhost"
+    port:               27017
+    dbName:             "facialRecogntionDB"
+    username:           "jbmTest3"
+    password:           "jbm@234"
+python:
+  path:                 "/usr/bin/python"
+  nodeUtilScriptsPath:  "/home/jbm/faceRecogDashboard/pythonScripts/"
+  frScripts:            "/home/jbm/insightFaceDetection/deploy"
+path:
+  uploadPicturePath:    "/home/jbm/insightFaceDetection/deploy/Training_data"
+  verificationPictures: "/home/jbm/insightFaceDetection/deploy/verificationPictures"
+  frModel:              "/home/jbm/insightFaceDetection/models"
+kafka:
+  brokerIP:             "3.7.152.162"
+server:
+  dashboard:
+    port:               8084
+  kafkaSocket:
+    port:               8085

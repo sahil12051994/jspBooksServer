@@ -1,0 +1,249 @@
+SSH:
+ssh jbmai@111.93.57.148 -p 23
+ssh jbmai@103.94.66.152
+ssh hercules@103.94.66.107
+
+TeamViewer => 1229331984
+https://www.codicode.com/art/how_to_draw_on_a_html5_canvas_with_a_mouse.aspx
+Tensorflow =>
+python export_inference_graph.py --input_type image_tensor --pipeline_config_path /home/hercules/faster_rcnn_inception_v2_coco.config --trained_checkpoint_prefix /home/hercules/faster_rcnn_11_April_ver3/model.ckpt --output_directory /home/hercules/frozenGraph
+
+Docker Installation =>
+sudo docker build -t dashboard .
+
+
+PM2 =>
+  pm2 reload ecosystem.config.js
+  pm2 reload ecosystem.config.js --only appName
+  pm2 start ecosystem.config.js
+  sudo pm2 stop all
+  sudo pm2 start all
+  sudo pm2 restart
+
+Linux =>
+  Free space in hdd : sudo parted /dev/sda print free
+  All drives : sudo fdisk -l
+  Size of directory : du -sh 2019-04-06
+  mount drive to folder : https://unix.stackexchange.com/questions/18925/how-to-mount-a-device-in-linux
+  mount -t ntfs /dev/sda1  /mnt/
+  sudo mount -t ntfs /dev/sdb1  /home/hercules/ext2tb
+
+  restart teamviewr: sudo pkill TeamViewer.exe; sudo pkill -f TeamViewer.exe;
+
+Network Monitor =>
+    bmon
+    nload
+    sudo hping3 --icmp --spoof 103.94.66.107 -p pppp 192.168.0.1 --fast --flood --verbose
+
+Kafka =>
+  Update topic :
+    ./bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic my-topic --partitions 3
+    ./kafka-topics.sh --alter --zookeeper localhost:2181 --topic VideoStream_zero_two --partitions 150
+
+  Describe:
+    ./kafka-topics.sh --describe --topic VideoStreamsAllCameraNew720final --zookeeper localhost:2181
+
+  Create:
+    kafka/bin/kafka-topics.sh --create \
+      --zookeeper localhost:2181 \
+      --replication-factor 1 --partitions 5 \
+      --topic VideoStream
+
+  List all topics:
+    ./kafka-topics.sh --list --zookeeper localhost:2181
+
+  List data from consumer:
+    sudo ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic nodejsData => Live
+    sudo ./kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic nodejsData --from-beginning => Begining
+
+NVIDIA =>
+  Install Nvidia driver for rtx20180ti - https://medium.com/@avinchintha/how-to-install-nvidia-drivers-and-cuda-10-0-for-rtx-2080-ti-gpu-on-ubuntu-16-04-18-04-ce32e4edf1c0
+  NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running. -> Reinstall using above steps.
+
+Networking =>
+  https://devconnected.com/how-to-change-ip-address-on-linux/
+  https://askubuntu.com/questions/491729/how-to-completely-reset-ubuntu-networking-settings
+  https://askubuntu.com/questions/214170/whats-the-default-etc-network-interfaces
+
+  fs error -> https://askubuntu.com/questions/955467/dev-sda1-contains-a-file-system-with-errors-check-forced
+
+MongoDB =>
+  Login MomgoDB :
+    mongo -u jbmTest3 -p jbm@234 --authenticationDatabase admin
+
+  Take MongoDB Dump to a directory:
+    sudo mongodump --db facialRecogntionDB --authenticationDatabase admin -u jbmTest3 -p jbm@234 --out /var/backups/mongobackups/`date +"%m-%d-%y"`
+    https://www.digitalocean.com/community/tutorials/how-to-back-up-restore-and-migrate-a-mongodb-database-on-ubuntu-14-04
+    sudo mongorestore --db facialRecogntionDB(db to be exported to) --authenticationDatabase admin -u jbmTest3 -p jbm@234 --drop facialRecogntionDB/(source of imported)
+
+User Roles:
+  https://docs.mongodb.com/manual/reference/built-in-roles/
+  use admin
+  db.createUser(
+    {
+      user: "admin",
+      pwd: "password",
+      roles: [ { role: "root", db: "admin" } ]
+    }
+  );
+  exit;
+  Update User:
+    db.updateUser() / db.getUsers()
+    https://docs.mongodb.com/manual/reference/method/db.updateUser/
+
+MongoDB not starting, Conn refused:
+  sudo rm /var/lib/mongodb/mongod.lock; mongod –repair; sudo service mongod restart; mongo
+  https://stackoverflow.com/questions/13312358/mongo-couldnt-connect-to-server-127-0-0-127017
+
+Mongo Qurries =>
+
+  db.cameras.deleteMany({"companyId" : "JBMGroup"})
+  db.covidData.find({"time" : { $gte: ISODate("2020-06-02T03:13:17.643Z")}}).pretty()
+  db.cameras.insertOne({ "camName" : "cam_1921685151_0_AnandGroup", "aiStats" : { "threshold" : 0.1, "precision" : 0.99, "recall" : 0.95 }, "cameraLocation" : "Gabriel Anand, Pune", "companyId" : "AnandGroup", "deploymentDetails" : [ { "microserviceName" : "faceRecog", "usageType" : [ 0, 1 ] } ], "hardware" : { "ip" : "192.168.5.151", "make" : "hikvision", "hardwareNumber" : 0, "port" : "554" }, "iotDeviceIds" : [ "test" ], "location" : "Gabriel Anand", "login" : { "username" : "admin", "password" : "admin@123" }, "mailingList" : [ ], "plant" : "test", "plantLocation" : "Gabriel Anand", "status" : 1 } )
+
+  db.faceFrame.aggregate([{$unwind:"$personsDetected"},{$match: {time : {$gte:ISODate("2020-05-29T00:00:00.546Z"), $lte: ISODate("2020-05-29T23:59:59.546Z")}}}, {$group: {_id: "$personsDetected.empId"}},{ $group: { _id: null, count: { $sum: 1 } } } ])
+  db.faceFrame.aggregate([{$unwind:"$personsDetected"},{$match: {}}, {$group: {_id: "$personsDetected.empId"}},{ $group: { _id: null, count: { $sum: 1 } } } ])
+
+
+  db.faceFrame.aggregate([{$unwind:"$personsDetected"},{$match: {time : {$gte:ISODate("2020-05-15T00:00:00.546Z"), $lte: ISODate("2020-05-15T23:59:59.546Z")}}}, {$group: {_id: "$personsDetected.empId"}},{ $group: { _id: null, count: { $sum: 1 } } } ])
+  db.faceFrame.aggregate([{$unwind:"$personsDetected"},{$match: {time : {$gte:ISODate("2020-05-15T00:00:00.546Z"), $lte: ISODate("2020-05-15T23:59:59.546Z")}}}, {$group: {_id: "$personsDetected.empId"}}])
+
+  db.faceFrame.aggregate([{$unwind:"$personsDetected"},{$match: {}}, {$group: {_id: "$personsDetected.empId"}}])
+  db.faceFrame.aggregate([{$unwind:"$personsDetected"},{$match: {}}, {$group: {_id: "$personsDetected.empId"}},{ $group: { _id: null, count: { $sum: 1 } } } ])
+
+
+  db.intelligenceData.find({"date" : ISODate("2019-03-23T00:00:00Z"), "camId" : "camera_50"}).pretty()
+  db.intelligenceData.find({"date" : ISODate("2019-03-23T00:00:00Z")}).pretty()
+  db.intelligenceData.createIndex({"date":-1, "camId":1})
+  db.intelligenceData.dropIndex("camId_1_date_1")
+  db.intelligenceData.deleteMany({"date" : ISODate("2019-03-24T00:00:00Z")})
+
+  db.plannedManPower.find({"date" : ISODate("2019-03-24T00:00:00Z")}).pretty()
+  db.plannedManPower.deleteMany({"date" : ISODate("2019-04-09T00:00:00Z")})
+
+  db.processedFrames.createIndex( { time: -1 } )
+  db.processedFrames.getIndexes()
+  db.processedFrames.createIndex({"camId":1, "time":1})
+  db.processedFrames.dropIndex("camId_1_time_1")
+  db.plannedManPower.createIndex({"date":-1})
+
+
+  db.processedFrames.update({ "camIdRef" : { $type : "string" }},{$unset: {camIdRef : ""}}, true, true)
+
+  db.cameras.aggregate([{$match : {"plant" : "N-5"}},{$project : {camName : { $concat : ["camera_",{$split: ["$hardware.ip","."]},"_","$plant"]}}}])
+  db.cameras.aggregate([{$match : {"plant" : "N-5"}},{$project : {camName : { $concatArrays : [["camera_"],{$split: ["$hardware.ip","."]},["_"],["$plant"]]}}}])
+  db.cameras.aggregate([{$match : {"plant" : "N-5"}},{$project : {camName : { $concat : ["camera_",{$reduce : {input :{$split: ["$hardware.ip","."]},initialValue: "",in : {$concat : ["$$value","$$this"]}}},"_","$plant"]}}}])
+  db.cameras.find({$or : [{status : 1},{status :2}]}).count()
+  db.cameras.update({plant: "N-1"}, {"status" : 1}, true, true)
+  db.cameras.update({plant: "N-1"},{$unset: {location : ""}}, true, true)
+  db.cameras.update({"hardware.ip" : "192.1.10.52"},{$set : {"status" : 2}}, true, true)
+  db.cameras.insertOne({
+  "login" : {
+  "username" : "admin",
+  "password" : "password123"
+  },
+  "hardware" : {
+    "ip" : "192.1.13.223",
+    "make" : "WBOX",
+    "hardwareNumber" : 0
+  },
+  "status" : 1,
+  "aiStats" : {
+    "threshold" : 0.1,
+    "precision" : 0.96,
+    "recall" : 0.86
+  },
+  "plant" : "CORP",
+  "camName" : "camera_192113223_CORP",
+  "location" : "Biometrics Entry",
+  "deploymentDetails" : [
+    {
+      "microserviceName" : "faceRecog",
+      "usageType" : [
+        0,1
+      ]
+    }
+  ]
+  })
+  //FR
+  db.cameras.update({camName : "camera_19211070_N-5"},{$set : {camName: "camera_19211070_N-5", location: "LPS-B MX Area" , deploymentDetails: [{microserviceName : "faceRecog", "usageType" : [1]}]}},false,true)
+
+  db.cameras.update({ $and : [{"aiStats.precision" : {$lt : 0.9}},{ "aiStats.recall" : {$lt : 0.9}} ]}, {$set : {"status" : 2}}, true, true)
+  db.cameras.find({ $and : [{"aiStats.precision" : {$lt : 0.9}},{ "aiStats.recall" : {$lt : 0.9}} ]})
+
+  db.plannedManPower.aggregate([{"$group" : {"_id" : {"camId" : "$camId", "date" : "$date"}, "dups" : {"$push" : "$_id"}, "count" : {"$sum" : 1}}}, {"$match" : {"count" : {"$gt" : 1}}}])
+  db.plannedManPower.aggregate([{"$group" : {"_id" : {"camId" : "$camId", "date" : "$date"}, "dups" : {"$push" : "$_id"}, "count" : {"$sum" : 1}}}, {"$match" : {"count" : {"$gt" : 1}}}]).forEach(function(doc){doc.dups.shift();     db.plannedManPower.remove({ "_id": {"$in": doc.dups }}); });
+
+  db.intelligenceData.find({"date" : ISODate("2019-04-29T00:00:00Z"), camId : /N-5/i}).count()
+  db.intelligenceData.update({"_id" : ObjectId("5ce83a956a261e3bc6b89e03"), "break_analysis.zero_workforce._id" : ObjectId("5ce83a956a261e3bc6b89e25")}, {$set : { "break_analysis.zero_workforce.$.comments" : "sf"}})
+
+  db.alerts.aggregate([ {$match : {$and : [{"camStatus" : {$exists : true}}, {"camStatus" : {$ne : "underperforming"}}]}}]).pretty()
+
+  db.cameras.update({"_id" : ObjectId("5cb6f1e6853dedb1e8ef783f")},{$set : {deploymentDetails: [{microserviceName : "manpower"}]}},false,true)
+  db.cameras.update({"_id" : ObjectId("5cb6f1e6853dedb1e8ef783f")},{$set : {deploymentDetails: [{microserviceName : "faceRecog", "usageType" : [0,1]}]}},false,true)
+
+  db.cameras.update({},{$set : {deploymentDetails: [{microserviceName : "manpower"}]}},false,true)
+
+  db.faceFrame.find({"_id" : ObjectId("5d3bd364f771189a2d6ffddd")}).pretty()
+  db.faceFrame.update({}, {$set : {camId : "cam01"}},false,true)
+
+
+  > db.intelligenceData.getIndexes()
+  [
+  	{
+  		"v" : 2,
+  		"key" : {
+  			"_id" : 1
+  		},
+  		"name" : "_id_",
+  		"ns" : "facialRecogntionDB.intelligenceData"
+  	},
+  	{
+  		"v" : 2,
+  		"unique" : true,
+  		"key" : {
+  			"camId" : 1,
+  			"date" : 1
+  		},
+  		"name" : "camId_1_date_1",
+  		"ns" : "facialRecogntionDB.intelligenceData",
+  		"background" : true
+  	}
+  ]
+
+PM2 Server:
+  http://pm2.keymetrics.io/
+
+Promises and Cronjob:
+  https://crontab.guru/
+  https://stackoverflow.com/questions/18983138/callback-after-all-asynchronous-foreach-callbacks-are-completed
+
+DLIB:
+  http://leadtosilverlining.blogspot.com/2018/08/build-and-install-dlib-with-cuda.html
+  nvcc = 9.2 gcc =6 cuDNN
+  https://askubuntu.com/questions/26498/how-to-choose-the-default-gcc-and-g-version
+  If gcc = 7
+  sudo apt-get install gcc-6 g++-6 g++-6-multilib gfortran-6
+  sudo update-alternatives --config gcc
+  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 10
+  sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 20
+
+OpenRstp:
+  openRTSP -D 1 -c -B 10000000 -b 10000000 -q -Q -F cam_eight -d 28800 -P 900 -t -u admin password123 rtsp://admin:password123@192.1.10.76:554
+
+  -D 1 # Quit if no packets for 1 second or more
+  -c   # Continuously record, after completion of -d timeframe
+  -B 10000000 # Input buffer of 10 MB
+  -b 10000000 # Output buffer 10MB (to file)
+  -q   # Produce files in QuickTime format
+  -Q   # Display QOS statistics
+  -F cam_eight  # Prefix output filenames with this text
+  -d 28800      # Run openRTSP this many seconds
+  -P 900        # Start a new output file every -P seconds
+  -t            # Request camera end stream over TCP, not UDP
+  -u admin 123456  # Username and password expected by camera
+  rtsp://192.168.1.108:554/11  # Camera's RTSP URL
+
+
+init.d =>
+  https://blog.frd.mn/how-to-set-up-proper-startstop-services-ubuntu-debian-mac-windows/

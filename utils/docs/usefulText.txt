@@ -1,0 +1,30 @@
+<--- Last few GCs --->
+
+[71998:0x55c2c649c140]   344864 ms: Mark-sweep 1382.2 (1444.3) -> 1382.1 (1445.3) MB, 826.0 / 0.0 ms  allocation failure GC in old space requested
+[71998:0x55c2c649c140]   345682 ms: Mark-sweep 1382.1 (1445.3) -> 1381.9 (1414.3) MB, 818.1 / 0.0 ms  last resort GC in old space requested
+[71998:0x55c2c649c140]   346540 ms: Mark-sweep 1381.9 (1414.3) -> 1381.9 (1414.3) MB, 857.8 / 0.0 ms  last resort GC in old space requested
+
+
+<--- JS stacktrace --->
+
+==== JS stack trace =========================================
+
+Security context: 0xcdb04b18fe1 <JSObject>
+    1: push(this=0x261fb5970879 <JSArray[2314316]>)
+    2: /* anonymous */(aka /* anonymous */) [/home/hercules/aiProject/dashboard/JBM_Dashboard/node_modules/mongoose/node_modules/mongodb/lib/operations/cursor_ops.js:239] [bytecode=0xd601aa0a5a9 offset=292](this=0xcdb04b02241 <undefined>,err=0xcdb04b02211 <null>,doc=0x2f6d6c419421 <Object map = 0x18e64c00b0a9>)
+    3: nextFunction(aka nextFuncti...
+
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+ 1: node::Abort() [node]
+ 2: 0x55c2c4930011 [node]
+ 3: v8::Utils::ReportOOMFailure(char const*, bool) [node]
+ 4: v8::internal::V8::FatalProcessOutOfMemory(char const*, bool) [node]
+ 5: v8::internal::Factory::NewUninitializedFixedArray(int) [node]
+ 6: 0x55c2c451f984 [node]
+ 7: 0x55c2c451fb6f [node]
+ 8: v8::internal::JSObject::AddDataElement(v8::internal::Handle<v8::internal::JSObject>, unsigned int, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::Object::ShouldThrow) [node]
+ 9: v8::internal::Object::AddDataProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::PropertyAttributes, v8::internal::Object::ShouldThrow, v8::internal::Object::StoreFromKeyed) [node]
+10: v8::internal::Object::SetProperty(v8::internal::LookupIterator*, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode, v8::internal::Object::StoreFromKeyed) [node]
+11: v8::internal::Runtime::SetObjectProperty(v8::internal::Isolate*, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::Handle<v8::internal::Object>, v8::internal::LanguageMode) [node]
+12: v8::internal::Runtime_SetProperty(int, v8::internal::Object**, v8::internal::Isolate*) [node]
+13: 0x50f0f5840bd

@@ -1,0 +1,43 @@
+#! /bin/sh
+# /etc/init.d/dhadkan
+
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          dhadkan
+# Required-Start:    $all
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Starts dhadkan server
+### END INIT INFO
+
+NAME=dhadkan
+PIDFILE=/var/run/$NAME.pid
+
+case "$1" in
+  start)
+    echo "Entering the virtual envt for Dhadkan"
+    cd /home/deepak/DhadkanServer/dhadkan-env
+    source bin/activate
+    echo "Starting dhadkan server"
+    cd /home/deepak/DhadkanServer/dhadkan
+    python manage.py runserver 8082 &
+    wait
+    echo $! > $PIDFILE
+    echo $!
+    ;;
+  stop)
+    echo "Stopping example"
+    # kill application you want to stop
+    kill 9 $!
+    if [ -e $PIDFILE ]; then
+        rm -f $PIDFILE
+    fi
+    ;;
+  *)
+    echo "Usage: /etc/init.d/dhadkan{start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0

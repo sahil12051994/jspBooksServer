@@ -1,0 +1,17 @@
+database:
+  mongodb:
+    address:   "localhost"
+    port:      27017
+    dbFRName:    "facialRecogntionDB"
+    dbSDName:    "jbmDB"
+    username:  "jbmTest3"
+    password:  "jbm@234"
+python:
+  path:        "/home/jbm/anaconda3/bin/python"
+kafka:
+  brokerIP:    "103.94.66.107"
+server:
+  dashboard:
+    port:      8084
+  kafkaSocket:
+    port:      8085

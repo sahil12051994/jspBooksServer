@@ -1,0 +1,117 @@
+{% extends './templates/mainOuterHtml.html' %}
+
+{% block title %}{% endblock %}
+
+{% block customStyleSheets %}
+<style media="screen">
+  .padding5 {
+    padding: 5px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Sidebar Menu -->
+{% include './templates/sidebarMenu.html' %}
+<!-- Top Nav -->
+{% include './templates/topNavigation.html' %}
+
+<div class="content-wrapper">
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card card-outline card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Upload Book</h3>
+            </div>
+            <form>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Book Name</label>
+                  <input type="email" class="form-control" id="bookName" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="bookId">Book ID</label>
+                  <input class="form-control" id="bookId" placeholder="Unique book ID">
+                </div>
+                <div class="form-group">
+                  <label for="bookAuthor">Author</label>
+                  <input class="form-control" id="bookAuthor" placeholder="Book author">
+                </div>
+                <div class="form-group">
+                  <label for="bookTags">Tags</label>
+                  <input class="form-control" id="bookTags" placeholder="Enter book tags with comma">
+                </div>
+                <div class="form-group">
+                  <label for="bookPrice">Price</label>
+                  <input class="form-control" id="bookPrice" placeholder="Enter book price">
+                </div>
+                <div class="form-group">
+                  <label for="bookDesc">Description</label>
+                  <textarea class="form-control" id="bookDescription" rows="3" placeholder="Enter book description"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">File input</label>
+                  <div class="input-group">
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                      <span class="input-group-text">Upload</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+              </div>
+
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card card-outline card-success">
+            <div class="card-header">
+              <h3 class="card-title">Uploaded Books</h3>
+            </div>
+            <div class="padding5" id="uploadedBooksList">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- /.content -->
+
+{% include './templates/footerDashboard.html' %}
+{% endblock %}
+
+{% block customJavascriptFiles %}
+<script src="/jsp/public/dashboard/js/uploadBook.js"></script>
+{% endblock %}

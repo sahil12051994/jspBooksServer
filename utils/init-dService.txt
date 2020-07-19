@@ -1,0 +1,34 @@
+#! /bin/sh
+# /etc/init.d/aiEngine
+
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          aiEngine
+# Required-Start:    $all
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Starts aiEngine and Dashboard
+### END INIT INFO
+
+NAME=aiEngine
+PIDFILE=/var/run/$NAME.pid
+
+case "$1" in
+  start)
+    echo "Entering the virtual envt for Dhadkan"
+    sudo bash -c 'cd /home/hercules && ./startKafka.sh'
+    ;;
+  stop)
+    echo "Stopping example"
+    # kill application you want to stop
+    killall screen
+    pm2 stop all
+    ;;
+  *)
+    echo "Usage: /etc/init.d/aiEngine{start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
