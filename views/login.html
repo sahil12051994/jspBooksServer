@@ -13,20 +13,26 @@
   <link rel="stylesheet" href="/jsp/public/dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/jsp/public/dashboard/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/jsp/public/dashboard/plugins/toastr/toastr.css">
+  <style>
+  .hidden {
+    display: none;
+  }
+  </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/jsp/public/dashboard/index2.html"><b>Admin</b>LTE</a>
+    <a href="/jsp/public/dashboard/index2.html"><b>Jeevansons</b>Publications</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="/jsp/public/dashboard/index3.html" method="post">
+      <form id="loginForm" class="loginElement">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input id="login_email" type="email" class="form-control" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -34,7 +40,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input id="login_password" type="password" class="form-control" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -52,28 +58,70 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button id="login_button" type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
-      <!-- /.social-auth-links -->
+      <form id="signupForm" class="signupElement hidden">
+        <div class="input-group mb-3">
+          <input id="signup_username" type="text" class="form-control" placeholder="Full name">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input id="signup_email" type="email" class="form-control" placeholder="Email">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input id="signup_password" type="password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input id="signup_confirm_password" type="password" class="form-control" placeholder="Retype password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+              <label for="agreeTerms">
+               I agree to the <a href="#">terms</a>
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button id="signup_button" type="submit" class="btn btn-primary btn-block">Register</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="#">I forgot my password</a>
       </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+      <p class="mb-0 signupElement">
+        <a id="loginViewButton" href="#"class="text-center">Existing User</a>
+      </p>
+      <p class="mb-0 loginElement">
+        <a id="registerNewButton" href="#" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.login-card-body -->
@@ -87,6 +135,8 @@
 <script src="/jsp/public/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/jsp/public/dashboard/dist/js/adminlte.min.js"></script>
+<script src="/jsp/public/dashboard/plugins/toastr/toastr.min.js"></script>
+<script src="/jsp/public/dashboard/js/login.js"></script>
 
 </body>
 </html>

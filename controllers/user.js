@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
 const toTitleCase = require('../utils/toTitleCase');
+const ObjectId = (require('mongoose').Types.ObjectId);
 
 const randomBytesAsync = promisify(crypto.randomBytes);
 
@@ -13,11 +14,30 @@ const randomBytesAsync = promisify(crypto.randomBytes);
  */
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect('/face/');
+    return res.redirect('/jsp/');
   }
   res.render('login.html', {
     title: 'Login'
   });
+};
+
+exports.updateUser = async (req, res) => {
+  let data = {}
+  data.matchObject = {
+    _id : new ObjectId(req.params.id)
+  }
+
+  data.updateObject = req.body
+
+  let updatedUser = await User.findOneAndUpdate(
+    data.matchObject,
+    data.updateObject, {
+      new: true
+    }
+  ).exec();
+  if(updatedUser) {
+    res.json(updatedUser)
+  }
 };
 
 /**
@@ -48,13 +68,7 @@ exports.postLogin = (req, res, next) => {
       if (err) { return next(err); }
       console.log(user)
       req.flash('success', { msg: 'Success! You are logged in.' });
-      if(user.employment.type == "NMPL") {
-        res.send({"redirect": ('face/home?usr='+user._id), "user" : user})
-      } else if (user.employment.type == "plant") {
-        res.send({"redirect": ('plant?usr='+user._id), "user" : user})
-      } else if (user.employment.type == "camera") {
-        res.send({"redirect": ('camera?usr='+user._id), "user" : user})
-      }
+      res.send({"redirect": ('jsp?usr='+user._id), "user" : user})
       // res.redirect(req.session.returnTo || ('/home?usr='+user._id));
     });
   })(req, res, next);
@@ -69,7 +83,7 @@ exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) console.log('Error : Failed to destroy the session during logout.', err);
     req.user = null;
-    return res.send({"redirect": "face/login"});
+    return res.send({"redirect": "jsp/login"});
   });
 };
 
@@ -79,9 +93,9 @@ exports.logout = (req, res) => {
  */
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect('/face/');
+    return res.redirect('/jsp/');
   }
-  res.render('/face/login', {
+  res.render('/jsp/login', {
     title: 'Create Account'
   });
 };
@@ -123,7 +137,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.send({"redirect": "face/home?usr=" + user._id})
+        res.send({"redirect": "jsp?usr=" + user._id})
       });
     });
   });

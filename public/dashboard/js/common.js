@@ -59,3 +59,26 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
   }
 };
+
+$(document).on('click', "#logout_button", function() {
+
+  $.ajax({
+    url: serviceUrl + "jsp/logout",
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    crossDomain: true,
+    processData: false,
+    success: function(res, output, xhr) {
+      if (res.redirect) {
+        // console.log("logout")
+        window.location.href = serviceUrl + res.redirect
+      }
+    },
+    error: function(err) {
+      toastr["error"]("Logout Failed")
+    }
+  }).done(function(data) {
+
+  });
+  return false;
+});

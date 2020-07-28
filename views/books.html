@@ -40,11 +40,29 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
-          <div class="card card-outline card-primary">
+          <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">My Books</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
             </div>
-            <div class="padding5" id="myBooksList">
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Book Name</th>
+                    <th>Book Author</th>
+                    <th>Expiry Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="myBooksList">
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -62,7 +80,11 @@
             <div class="card-header">
               <h3 class="card-title">All Books</h3>
             </div>
-            <div class="padding5" id="allBooksList">
+            <div class="col-md-12">
+              <div class="padding5" id="allBooksList">
+              </div>
+            </div>
+            <div class="col-md-6">
             </div>
           </div>
         </div>

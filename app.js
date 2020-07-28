@@ -198,6 +198,8 @@ app.get('/jsp/loginPage', homeController.login);
 app.get('/jsp/uploadPage', homeController.upload);
 app.get('/jsp/bookPage', homeController.bookPage);
 
+app.put('/jsp/user/update/:id', userController.updateUser);
+
 /**
  * Book logic routes.
  */
