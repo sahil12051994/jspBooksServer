@@ -1,5 +1,7 @@
 let globalBookToView = {}
 
+let pageCount = 1
+
 $(window).on('load', async function() {
 
   let urlUserId = $.cookie("uId") ? $.cookie("uId") : getUrlParameter('usr');
@@ -22,10 +24,6 @@ $(window).on('load', async function() {
   let getUploadedBooksVal = await getUploadedBooks();
 });
 
-$(document).bind("contextmenu", function(e) {
-  return false;
-});
-
 function showImages(res) {
   let imagesArray = res['files']
   imagesArray.sort(function(a, b) {
@@ -40,7 +38,7 @@ function showImages(res) {
   $("#bookDiv").html('');
   for (var i = 0; i < imagesArray.length; i++) {
     tempHtml = tempHtml + '<div class="col-md-12">\
-      <img class="img-responsive" src="/jsp/uploads' + imagesArray[i]['path'] + '" style="width:100%">\
+      <img id="pageCount'+(i+1)+'" class="img-responsive" src="/jsp/uploads' + imagesArray[i]['path'] + '" style="width:100%">\
     </div>'
     // tempHtml = tempHtml + '<div class="col-md-12" style="' +
     // 'background-image: url("/jsp/uploads'+imagesArray[i]['path']+'");background-size: auto 100%;background-repeat: no-repeat;background-position: left top;width: 100%;height: 3%;' +
@@ -118,7 +116,10 @@ function getUploadedBooks() {
   })
 }
 
-// Prevent Printing
+$(document).bind("contextmenu", function(e) {
+  return false;
+});
+
 function copyToClipboard() {
   // Create a "hidden" input
   var aux = document.createElement("input");

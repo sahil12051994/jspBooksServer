@@ -193,21 +193,21 @@ app.get('/jsp/user/:id', passportConfig.isAuthenticated, userController.getInfo)
 /**
  * HTML Serving app routes.
  */
-app.get('/jsp/', homeController.index);
-app.get('/jsp/loginPage', homeController.login);
-app.get('/jsp/uploadPage', homeController.upload);
-app.get('/jsp/bookPage', homeController.bookPage);
+app.get('/jsp/', passportConfig.isAuthenticated, homeController.index);
+app.get('/jsp/loginPage', passportConfig.isAuthenticated, homeController.login);
+app.get('/jsp/uploadPage', passportConfig.isAuthenticated, homeController.upload);
+app.get('/jsp/bookPage', passportConfig.isAuthenticated, homeController.bookPage);
 
-app.put('/jsp/user/update/:id', userController.updateUser);
+app.put('/jsp/user/update/:id', passportConfig.isAuthenticated, userController.updateUser);
 
 /**
  * Book logic routes.
  */
-app.get('/jsp/book/', bookController.getAllBooks);
-app.get('/jsp/book/getBookPages', bookController.getBookPages);
-app.post('/jsp/book/upload', bookController.uploadBook);
-app.post('/jsp/book/uploadPdf', bookController.uploadPdf);
-app.get('/jsp/book/convertBook', convertController.convertBook);
+app.get('/jsp/book/', passportConfig.isAuthenticated, bookController.getAllBooks);
+app.get('/jsp/book/getBookPages', passportConfig.isAuthenticated, bookController.getBookPages);
+app.post('/jsp/book/upload', passportConfig.isAuthenticated, bookController.uploadBook);
+app.post('/jsp/book/uploadPdf', passportConfig.isAuthenticated, bookController.uploadPdf);
+app.get('/jsp/book/convertBook', passportConfig.isAuthenticated, convertController.convertBook);
 
 /**
  * Error Handler.
