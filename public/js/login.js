@@ -164,7 +164,7 @@ $(document).on('click', "#login_button", function() {
   signin.email = $("#login_email").val();
   signin.password = $("#login_password").val();
   $.ajax({
-    url: serviceUrl + "face/login",
+    url: serviceUrl + "jsp/login",
     type: "POST",
     contentType: "application/json; charset=utf-8",
     crossDomain: true,
