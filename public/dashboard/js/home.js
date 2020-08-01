@@ -37,7 +37,7 @@ function showImages(res) {
   let tempHtml = '';
   $("#bookDiv").html('');
   for (var i = 0; i < imagesArray.length; i++) {
-    tempHtml = tempHtml + '<div class="col-md-12">\
+    tempHtml = tempHtml + '<div class="col-md-12 col-xs-12">\
       <img id="pageCount'+(i+1)+'" class="img-responsive" src="/jsp/uploads' + imagesArray[i]['path'] + '" style="width:100%">\
     </div>'
     // tempHtml = tempHtml + '<div class="col-md-12" style="' +
