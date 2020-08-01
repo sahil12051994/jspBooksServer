@@ -595,7 +595,7 @@ exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/face/login');
+  res.redirect('/jsp/login');
 };
 
 /**
