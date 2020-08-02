@@ -43,3 +43,15 @@ exports.bookPage = (req, res) => {
     });
   }
 };
+
+exports.adminPage = (req, res) => {
+  if (!req.user) {
+    return res.send({
+      "redirect": "jsp/login"
+    });
+  } else {
+    res.render('admin.html', {
+      title: 'Home'
+    });
+  }
+};

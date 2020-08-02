@@ -21,6 +21,14 @@ exports.getLogin = (req, res) => {
   });
 };
 
+exports.getall = async (req,res) => {
+  console.log("skjdnfk")
+  let userDetails = await User.find().exec();
+  if(userDetails) {
+    res.json(userDetails)
+  }
+}
+
 exports.updateUser = async (req, res) => {
   let data = {}
   data.matchObject = {
@@ -126,7 +134,7 @@ exports.postSignup = (req, res, next) => {
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });
       return res.send({
-        "redirect": "login",
+        "redirect": "jsp/login",
         "error_text": "Account with that email address already exists."
       });
     }

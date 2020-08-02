@@ -5,6 +5,15 @@
 {% block customStyleSheets %}
 <link rel="stylesheet" href="/jsp/public/dashboard/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="/jsp/public/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<style>
+  @media print {
+    html,
+    body {
+      display: none;
+      /* hide whole page */
+    }
+  }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -32,20 +41,20 @@
     </div><!-- /.container-fluid -->
   </div>
 
-<section class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12" style="margin-bottom:10px;padding:10px;">
-        <select id="validBookList" class="form-control select2">
-          <option>Select book to view</option>
-        </select>
-      </div>
-      <div class="row" id="bookDiv">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12" style="margin-bottom:10px;padding:10px;">
+          <select id="validBookList" class="form-control select2">
+            <option>Select book to view</option>
+          </select>
+        </div>
+        <div class="row" id="bookDiv">
 
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 </div>
 
 {% include './templates/footerDashboard.html' %}

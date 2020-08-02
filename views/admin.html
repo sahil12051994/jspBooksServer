@@ -1,0 +1,83 @@
+{% extends './templates/mainOuterHtml.html' %}
+
+{% block title %}{% endblock %}
+
+{% block customStyleSheets %}
+<style media="screen">
+  .padding5 {
+    padding: 5px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Sidebar Menu -->
+{% include './templates/sidebarMenu.html' %}
+<!-- Top Nav -->
+{% include './templates/topNavigation.html' %}
+
+<div class="content-wrapper">
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Admin</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Users</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>Type</th>
+                    <th>Mobile</th>
+                    <th style="text-align: center;">User ID</th>
+                    <th style="text-align: center;">Actions</th>
+                    <th style="text-align: center;"></th>
+                  </tr>
+                </thead>
+                <tbody id="myUserList">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- /.content -->
+
+{% include './templates/footerDashboard.html' %}
+{% endblock %}
+
+{% block customJavascriptFiles %}
+<script src="/jsp/public/dashboard/js/admin.js"></script>
+{% endblock %}

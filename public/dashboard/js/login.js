@@ -55,6 +55,7 @@ $(document).on('click', "#login_button", function() {
       console.log(res)
       // alert(res)
       if (res.redirect) {
+        $.cookie("uId", res._id)
         window.location.href = serviceUrl + res.redirect
       }
       if (res.error) {
@@ -72,6 +73,11 @@ $(document).on('click', "#login_button", function() {
   return false;
 });
 
+function validateEmail(email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
 $(document).on('click', "#signup_button", function() {
   var emailRegex = /^[A-Za-z0-9._+-]*\@[A-Za-z0-9_+-]*\.[A-Za-z]{2,5}$/;
   var email = $("#signup_email").val();
@@ -88,7 +94,8 @@ $(document).on('click', "#signup_button", function() {
     $("#signup_email").css('border', 'solid 2px red');
     return false;
   }
-  if (!emailRegex.test(email)) {
+  console.log(email, validateEmail(email))
+  if (!validateEmail(email)) {
     $("#signup_email").focus();
     $("#signup_email").css('border', 'solid 2px red');
     toastr["error"]("Please enter valid email")
@@ -132,6 +139,7 @@ $(document).on('click', "#signup_button", function() {
       }
       if (res.redirect) {
         window.location.href = serviceUrl + res.redirect
+        $.cookie("uId", res._id)
       }
     },
     error: function(err) {

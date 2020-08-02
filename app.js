@@ -197,8 +197,10 @@ app.get('/jsp/', passportConfig.isAuthenticated, homeController.index);
 app.get('/jsp/loginPage', passportConfig.isAuthenticated, homeController.login);
 app.get('/jsp/uploadPage', passportConfig.isAuthenticated, homeController.upload);
 app.get('/jsp/bookPage', passportConfig.isAuthenticated, homeController.bookPage);
+app.get('/jsp/adminPage', passportConfig.isAuthenticated, homeController.adminPage);
 
 app.put('/jsp/user/update/:id', passportConfig.isAuthenticated, userController.updateUser);
+app.get('/jsp/user', userController.getall);
 
 /**
  * Book logic routes.

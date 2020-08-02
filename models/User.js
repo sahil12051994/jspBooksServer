@@ -21,6 +21,12 @@ const userSchema = new mongoose.Schema({
     type: String
     // "user|admin"
   },
+  permission: {
+    grantAccessToAllBooks: {
+      type: Boolean,
+      default: false
+    }
+  },
   books: [{
     bookId: {
       type: String

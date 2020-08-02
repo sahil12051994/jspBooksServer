@@ -18,6 +18,9 @@ $(window).on('load', async function() {
     success: function(res) {
       $(".user_name").html(res.profile.name);
       $.cookie("uId", res._id)
+      if(res.profile.name != "RISHABH VIJ") {
+        $('.permissionCheck').remove()
+      }
     },
     error: function(err) {}
   });
@@ -147,3 +150,18 @@ $(window).focus(function() {
 }).blur(function() {
   $("body").hide();
 });
+
+// var previousOrientation = window.orientation;
+// var checkOrientation = function(){
+//     if(window.orientation !== previousOrientation){
+//         previousOrientation = window.orientation;
+//         alert("changed")
+//         // orientation changed, do your magic here
+//     }
+// };
+//
+// window.addEventListener("resize", checkOrientation, false);
+// window.addEventListener("orientationchange", checkOrientation, false);
+//
+// // (optional) Android doesn't always fire orientationChange on 180 degree turns
+// setInterval(checkOrientation, 2000);
