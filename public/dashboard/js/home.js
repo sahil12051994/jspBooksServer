@@ -15,16 +15,23 @@ $(window).on('load', async function() {
       request.setRequestHeader('Authorization', authToken);
       request.setRequestHeader("Access-Control-Allow-Origin", "*");
     },
-    success: function(res) {
+    success: async function(res) {
       $(".user_name").html(res.profile.name);
       $.cookie("uId", res._id)
       if(res.profile.name != "RISHABH VIJ") {
         $('.permissionCheck').remove()
       }
+
+      if(res.permission) {
+        if(res.permission.grantAccessToAllBooks) {
+          let getUploadedBooksVal = await getUploadedBooks();
+        }
+      }
+
     },
     error: function(err) {}
   });
-  let getUploadedBooksVal = await getUploadedBooks();
+
 });
 
 function showImages(res) {
