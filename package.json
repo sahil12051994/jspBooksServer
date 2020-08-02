@@ -52,7 +52,7 @@
     "grunt-contrib-uglify": "^4.0.1",
     "instagram-node": "^0.5.8",
     "jimp": "^0.6.8",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "json2csv": "^4.5.4",
     "kafka-node": "^4.0.4",
     "lastfm": "^0.9.3",
