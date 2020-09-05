@@ -35,6 +35,9 @@ const BookSchema = new mongoose.Schema({
   bookType: {
     type: String,
   },
+  instituteType: {
+    type: String,
+  },
   bookDescription: {
     type: String,
   },

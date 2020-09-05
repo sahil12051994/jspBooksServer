@@ -44,58 +44,73 @@
             <div class="card-header">
               <h3 class="card-title">Upload Book</h3>
             </div>
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Book Name</label>
-                  <input class="form-control" id="bookName" placeholder="Enter email">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Book Name</label>
+                <input class="form-control" id="bookName" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Book Type</label>
+                <select id="bookType" class="form-control select2">
+                  <option>Select book type</option>
+                  <option value="Maths">Maths</option>
+                  <option value="Science">Science</option>
+                  <option value="English">English</option>
+                  <option value="Statistics">Statistics</option>
+                  <option value="Physics">Physics</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="bookId">Book ID</label>
+                <input class="form-control" id="bookId" placeholder="Unique book ID">
+              </div>
+              <div class="form-group">
+                <label for="bookAuthor">Author</label>
+                <input class="form-control" id="bookAuthor" placeholder="Book author">
+              </div>
+              <div class="form-group">
+                <label for="bookTags">Tags</label>
+                <input class="form-control" id="bookTags" placeholder="Enter book tags with comma">
+              </div>
+              <div class="form-group">
+                <label for="bookPrice">Price</label>
+                <input class="form-control" id="bookPrice" placeholder="Enter book price">
+              </div>
+              <div class="form-group">
+                <label for="bookDesc">Description</label>
+                <textarea class="form-control" id="bookDescription" rows="3" placeholder="Enter book description"></textarea>
+              </div>
+              <div class="form-group">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="school" checked="">
+                    School
+                  </label>
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Book Type</label>
-                  <select id="bookType" class="form-control select2">
-                    <option>Select book type</option>
-                    <option value="Maths">Maths</option>
-                    <option value="Science">Science</option>
-                    <option value="English">English</option>
-                    <option value="Statistics">Statistics</option>
-                  </select>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="college">
+                    College
+                  </label>
                 </div>
-                <div class="form-group">
-                  <label for="bookId">Book ID</label>
-                  <input class="form-control" id="bookId" placeholder="Unique book ID">
-                </div>
-                <div class="form-group">
-                  <label for="bookAuthor">Author</label>
-                  <input class="form-control" id="bookAuthor" placeholder="Book author">
-                </div>
-                <div class="form-group">
-                  <label for="bookTags">Tags</label>
-                  <input class="form-control" id="bookTags" placeholder="Enter book tags with comma">
-                </div>
-                <div class="form-group">
-                  <label for="bookPrice">Price</label>
-                  <input class="form-control" id="bookPrice" placeholder="Enter book price">
-                </div>
-                <div class="form-group">
-                  <label for="bookDesc">Description</label>
-                  <textarea class="form-control" id="bookDescription" rows="3" placeholder="Enter book description"></textarea>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
-                  <div class="input-group">
-                    <div class="custom-file">
-                      <form name="uploadForm" id="uploadForm" enctype="multipart/form-data" action="javascript:;" method="post">
-                        <input class="btn btn-default" type="file" name="userBook" id="selectFilePlm"/>
-                      </form>
-                    </div>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <form name="uploadForm" id="uploadForm" enctype="multipart/form-data" action="javascript:;" method="post">
+                      <input class="btn btn-default" type="file" name="userBook" id="selectFilePlm" />
+                    </form>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="card-footer">
-                <button id="insertBook" class="btn btn-primary">Make Book Entry</button>
-                <button id="uploadPdfButton" class="btn btn-default">Upload PDF</button>
-                <button id="convertBook" class="btn btn-default">Convert PDF</button>
-              </div>
+            <div class="card-footer">
+              <button id="insertBook" class="btn btn-primary">Make Book Entry</button>
+              <button id="uploadPdfButton" class="btn btn-default">Upload PDF</button>
+              <button id="convertBook" class="btn btn-default">Convert PDF</button>
+            </div>
           </div>
         </div>
         <div class="col-md-4">

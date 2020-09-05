@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,129 +16,163 @@
   <link rel="stylesheet" href="/jsp/public/dashboard/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="/jsp/public/dashboard/plugins/toastr/toastr.css">
   <style>
-  .hidden {
-    display: none;
-  }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
+
 <body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="/jsp/public/dashboard/index2.html"><b>Jeevansons</b>Publications</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
-
-      <form id="loginForm" class="loginElement">
-        <div class="input-group mb-3">
-          <input id="login_email" type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input id="login_password" type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button id="login_button" type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <form id="signupForm" class="signupElement hidden">
-        <div class="input-group mb-3">
-          <input id="signup_username" type="text" class="form-control" placeholder="Full name">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input id="signup_email" type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input id="signup_password" type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input id="signup_confirm_password" type="password" class="form-control" placeholder="Retype password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
-               I agree to the <a href="#">terms</a>
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button id="signup_button" type="submit" class="btn btn-primary btn-block">Register</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      <p class="mb-1">
-        <a href="#">I forgot my password</a>
-      </p>
-      <p class="mb-0 signupElement">
-        <a id="loginViewButton" href="#"class="text-center">Existing User</a>
-      </p>
-      <p class="mb-0 loginElement">
-        <a id="registerNewButton" href="#" class="text-center">Register a new membership</a>
-      </p>
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="/jsp/public/dashboard/index2.html"><b>Jeevansons</b>Publications</a>
     </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Sign in to start your session</p>
 
-<!-- jQuery -->
-<script src="/jsp/public/dashboard/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/jsp/public/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/jsp/public/dashboard/dist/js/adminlte.min.js"></script>
-<script src="/jsp/public/dashboard/plugins/toastr/toastr.min.js"></script>
-<script type="text/javascript" src="/jsp/public/js/jquery.cookie.min.js"></script>
-<script src="/jsp/public/dashboard/js/login.js"></script>
+        <form id="loginForm" class="loginElement">
+          <div class="input-group mb-3">
+            <input id="login_email" type="email" class="form-control" placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="login_password" type="password" class="form-control" placeholder="Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="remember">
+                <label for="remember">
+                  Remember Me
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button id="login_button" type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+        <form id="signupForm" class="signupElement hidden">
+          <div class="input-group mb-3">
+            <input id="signup_username" type="text" class="form-control" placeholder="Full name">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="signup_email" type="email" class="form-control" placeholder="Email">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="signup_institute" type="email" class="form-control" placeholder="Institute">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-university"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="signup_mobile" type="" class="form-control" placeholder="Mobile Number">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-phone"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="signup_password" type="password" class="form-control" placeholder="Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input id="signup_confirm_password" type="password" class="form-control" placeholder="Retype password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <div class="form-group">
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="school" checked="">
+                  School
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios2" value="college">
+                  College
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="icheck-primary">
+                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                <label for="agreeTerms">
+                  I agree to the <a href="#">terms</a>
+                </label>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-4">
+              <button id="signup_button" type="submit" class="btn btn-primary btn-block">Register</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
+
+        <p class="mb-1">
+          <a href="#">I forgot my password</a>
+        </p>
+        <p class="mb-0 signupElement">
+          <a id="loginViewButton" href="#" class="text-center">Existing User</a>
+        </p>
+        <p class="mb-0 loginElement">
+          <a id="registerNewButton" href="#" class="text-center">Register a new membership</a>
+        </p>
+      </div>
+      <!-- /.login-card-body -->
+    </div>
+  </div>
+  <!-- /.login-box -->
+
+  <!-- jQuery -->
+  <script src="/jsp/public/dashboard/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="/jsp/public/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="/jsp/public/dashboard/dist/js/adminlte.min.js"></script>
+  <script src="/jsp/public/dashboard/plugins/toastr/toastr.min.js"></script>
+  <script type="text/javascript" src="/jsp/public/js/jquery.cookie.min.js"></script>
+  <script src="/jsp/public/dashboard/js/login.js"></script>
 
 </body>
+
 </html>

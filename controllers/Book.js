@@ -108,7 +108,11 @@ exports.getAllBooks = async (req, res) => {
 
   let matchObject = {}
   if(req.query.bookId) {
-    bookId: req.query.bookId
+    matchObject['bookId'] = req.query.bookId
+  }
+
+  if(req.query.instituteType) {
+    matchObject['instituteType'] = req.query.instituteType
   }
 
   aggPipeline.push({

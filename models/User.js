@@ -21,11 +21,20 @@ const userSchema = new mongoose.Schema({
     type: String
     // "user|admin"
   },
+  mobile: {
+    type: String
+  },
+  institute: {
+    type: String
+  },
   permission: {
     grantAccessToAllBooks: {
       type: Boolean,
       default: false
     }
+  },
+  instituteType: {
+    type: String
   },
   books: [{
     bookId: {

@@ -1,0 +1,92 @@
+{% extends './templates/mainOuterHtml.html' %}
+
+{% block title %}{% endblock %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="/jsp/public/dashboard/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="/jsp/public/dashboard/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<style>
+  @media print {
+
+    html,
+    body {
+      display: none;
+      /* hide whole page */
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Sidebar Menu -->
+{% include './templates/sidebarMenu.html' %}
+<!-- Top Nav -->
+{% include './templates/topNavigation.html' %}
+
+<div class="content-wrapper">
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard v1</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12" style="margin-bottom:10px;padding:10px;">
+          <select id="validBookList" class="form-control select2">
+            <option>Select book to view</option>
+          </select>
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <button id="prevButton" type="button" class="btn btn-block btn-default">Prev</button>
+            </div>
+            <div class="col-md-6">
+              <button id="nextButton" type="button" class="btn btn-block btn-default">Next</button>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="bookDiv">
+          <div class="col-md-12 col-xs-12">
+            <img id="pageCount1" class="img-responsive" src="" style="width:100%">
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <img id="pageCount2" class="img-responsive" src="" style="width:100%">
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <img id="pageCount3" class="img-responsive" src="" style="width:100%">
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <img id="pageCount4" class="img-responsive" src="" style="width:100%">
+          </div>
+          <div class="col-md-12 col-xs-12">
+            <img id="pageCount5" class="img-responsive" src="" style="width:100%">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% include './templates/footerDashboard.html' %}
+
+{% endblock %}
+
+{% block customJavascriptFiles %}
+<script src="/jsp/public/dashboard/plugins/select2/js/select2.full.min.js"></script>
+<script src="/jsp/public/dashboard/js/home.js"></script>
+{% endblock %}

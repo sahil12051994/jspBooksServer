@@ -13,6 +13,7 @@ async function insertBookFunction() {
       bookDescription: $("#bookDescription").val(),
       bookName: $("#bookName").val(),
       bookType: $("#bookType").val(),
+      instituteType: $("input[name='optionsRadios']:checked").val(),
       bookPages: [{
         pageNumber: 1,
         pageImagePath: "/uploads/books/"+$("#bookType").val()+"/1.png",

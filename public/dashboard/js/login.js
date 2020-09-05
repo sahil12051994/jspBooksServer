@@ -31,6 +31,9 @@ var signUp = {
   },
   email: "",
   password: "",
+  mobile: "",
+  institute: "",
+  instituteType: "",
   employment: {
     designation: "employee",
     type: "NMPL"
@@ -78,6 +81,11 @@ function validateEmail(email) {
     return re.test(String(email).toLowerCase());
 }
 
+function validateMobile(mobile) {
+    const re = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+    return re.test(String(mobile));
+}
+
 $(document).on('click', "#signup_button", function() {
   var emailRegex = /^[A-Za-z0-9._+-]*\@[A-Za-z0-9_+-]*\.[A-Za-z]{2,5}$/;
   var email = $("#signup_email").val();
@@ -119,11 +127,28 @@ $(document).on('click', "#signup_button", function() {
     return false;
   }
 
+  if($("#signup_mobile").val() == "") {
+    $("#signup_mobile").focus();
+    $("#signup_mobile").css('border', 'solid 2px red');
+    toastr["error"]("Mobile-Field blank")
+    return false;
+  }
+
+  if(!validateMobile($("#signup_mobile").val())) {
+    $("#signup_mobile").focus();
+    $("#signup_mobile").css('border', 'solid 2px red');
+    toastr["error"]("Mobile-Field blank")
+    return false;
+  }
+
 
   signUp.profile.name = $("#signup_username").val();
   // signUp.name.last = $("#lastName").val();
   signUp.email = $("#signup_email").val();
   signUp.password = $("#signup_password").val();
+  signUp.mobile = $("#signup_mobile").val();
+  signUp.institute = $("#signup_institute").val();
+  signUp.instituteType = $("input[name='optionsRadios']:checked").val();
   $.ajax({
     url: serviceUrl + "jsp/signup",
     type: "POST",
