@@ -89,7 +89,7 @@
     "pm2": "^3.4.1",
     "png-to-jpeg": "^1.0.1",
     "popper.js": "^1.14.7",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "python-shell": "^1.0.7",
     "regression": "^2.0.1",
     "request": "^2.88.0",
