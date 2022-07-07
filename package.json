@@ -62,7 +62,7 @@
     "mathjs": "^5.6.0",
     "mkdir-recursive": "^0.4.0",
     "ml-savitzky-golay": "^3.0.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.4.15",
     "mongoose-deep-populate": "^3.1.1",
     "morgan": "^1.9.1",
